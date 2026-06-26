@@ -2,6 +2,8 @@ from subprocess import call
 import pyttsx3
 import datetime
 import speech_recognition as sr
+import wikipedia
+import webbrowser
 
 call("cls", shell=True)
 
@@ -57,4 +59,17 @@ def takeFromMic():
 if __name__ == "__main__":
     wishMe()
     while (1):
-        takeFromMic()
+        query = takeFromMic().lower()
+
+        if ("open youtube" in query):
+            webbrowser.open("youtube.com")
+        elif ("open google" in query):
+            webbrowser.open("google.com")
+        elif ("quit" in query):
+            pyttsx3.speak("Jarvis signing off")
+            print("Jarvis signed off")
+            exit(0)
+        elif "clear" in query:
+            call('cls', shell=True) 
+        else:
+            pass
