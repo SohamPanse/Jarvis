@@ -18,6 +18,7 @@ Purpose : To make an assistant for repetative tasks
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
+chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
 
 # Functions
 
@@ -62,14 +63,21 @@ if __name__ == "__main__":
         query = takeFromMic().lower()
 
         if ("open youtube" in query):
-            webbrowser.open("youtube.com")
+            webbrowser.get(chrome_path).open("youtube.com")
         elif ("open google" in query):
-            webbrowser.open("google.com")
+            webbrowser.get(chrome_path).open("google.com")
         elif ("quit" in query):
             pyttsx3.speak("Jarvis signing off")
-            print("Jarvis signed off")
+            print("Jarvis logged out")
             exit(0)
         elif "clear" in query:
-            call('cls', shell=True) 
+            call('cls', shell=True)
+        elif "wikipedia" in query:
+            pyttsx3.speak("Searching wikipedia...")
+            query = query.replace("wikipedia", "")
+            results = wikipedia.summary(query, sentences=2)
+            speak("According to Wikipedia")
+            print(results)
+            pyttsx3.speak(results)
         else:
             pass
