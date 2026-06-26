@@ -70,12 +70,20 @@ if __name__ == "__main__":
             pyttsx3.speak("Jarvis signing off")
             print("Jarvis logged out")
             exit(0)
+        elif "restart" in query:
+            pyttsx3.speak("Jarvis restarting")
+            call('python main.py', shell=True)
+            exit(0)
         elif "clear" in query:
             call('cls', shell=True)
         elif "wikipedia" in query:
             pyttsx3.speak("Searching wikipedia...")
             query = query.replace("wikipedia", "")
-            results = wikipedia.summary(query, sentences=2)
+            try:
+                results = wikipedia.summary(query, sentences=2)
+            except Exception:
+                print("Wiki API fail. Try Again")
+                results = "None"
             speak("According to Wikipedia")
             print(results)
             pyttsx3.speak(results)
