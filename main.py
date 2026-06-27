@@ -19,8 +19,8 @@ Purpose : To make an assistant for repetative tasks
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
-chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
-vs_path = r"C:\Users\soham\Microsoft VS Code\Code.exe"
+chrome_path = "Chrome Location In File System"
+vs_path = r"VS code Location In File System"
 # Functions
 
 
