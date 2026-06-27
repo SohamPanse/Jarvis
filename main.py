@@ -4,6 +4,7 @@ import datetime
 import speech_recognition as sr
 import wikipedia
 import webbrowser
+import os
 
 call("cls", shell=True)
 
@@ -19,7 +20,7 @@ engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
-
+vs_path = r"C:\Users\soham\Microsoft VS Code\Code.exe"
 # Functions
 
 
@@ -84,8 +85,15 @@ if __name__ == "__main__":
             except Exception:
                 print("Wiki API fail. Try Again")
                 results = "None"
-            speak("According to Wikipedia")
+            pyttsx3.speak("According to Wikipedia")
             print(results)
             pyttsx3.speak(results)
+        elif "the time" in query:
+            strTime = datetime.datetime.now().strftime("%I:%M %p")
+            pyttsx3.speak(f"It's {strTime} now")
+        elif "open code" in query:
+            os.startfile(vs_path)
+        elif "open chrome" in query:
+            os.startfile(chrome_path[0:-3])
         else:
             pass
